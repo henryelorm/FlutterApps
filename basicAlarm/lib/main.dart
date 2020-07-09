@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     bool flip = true;
     AppBar appBar = flip
-        ? AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
-          )
+        ? AppBar()
         : AppBar(
             leading: Builder(
               builder: (context) {
@@ -23,10 +21,6 @@ class MyApp extends StatelessWidget {
                   onPressed: () {},
                 );
               },
-            ),
-            title: Text(
-              "Interval",
-              style: TextStyle(),
             ),
           );
     Widget child = HomePage(appBar: appBar);
@@ -38,7 +32,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Interval',
       theme: basicTheme(),
-      home: child,
+      initialRoute: '/',
+      routes: {'/': (context) => child},
     );
   }
 }

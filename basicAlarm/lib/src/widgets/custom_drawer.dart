@@ -50,7 +50,7 @@ class _CustomDrawerState extends State<CustomDrawer>
         animation: animationController,
         builder: (context, _) {
           return Material(
-            color: Colors.blueGrey,
+            color: Theme.of(context).primaryColorDark,
             child: Stack(
               children: <Widget>[
                 Transform.translate(
@@ -92,7 +92,7 @@ class _CustomDrawerState extends State<CustomDrawer>
                     style: TextStyle(
                         fontSize: 26,
                         color: Colors.white,
-                        fontWeight: FontWeight.w300),
+                        fontWeight: FontWeight.w400),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -138,6 +138,39 @@ class _CustomDrawerState extends State<CustomDrawer>
 }
 
 class Drawer extends StatelessWidget {
+  final double fontSize = 25.0;
+  final double iconSize = 38.0;
+
+  final Widget appName = Container(
+    child: SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(left: 20, top: 10),
+            child: Text(
+              "Time",
+              style: TextStyle(color: Colors.white, fontSize: 50),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(
+              "Interval",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 50,
+                  fontWeight: FontWeight.w800),
+            ),
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+        ],
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -152,17 +185,28 @@ class Drawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Image.asset(
-                  'assets/images/flutter_europe_white.png',
-                  width: 200,
+                appName,
+                ListTile(
+                  leading: Icon(
+                    Icons.settings,
+                    size: iconSize,
+                  ),
+                  title: Text(
+                    'Settings',
+                    style: TextStyle(
+                        fontSize: fontSize, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
-                ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('About'),
+                  leading: Icon(
+                    Icons.person,
+                    size: iconSize,
+                  ),
+                  title: Text(
+                    'About',
+                    style: TextStyle(
+                        fontSize: fontSize, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
